@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Swasti-klover Fractal Art</title>
+  </head>
+ <body>
+  <a class='backLink' href='http://www.tomcdonnell.net'>Back to tomcdonnell.net</a>
+  <h1>Swasti-klover Fractal Art</h1>
+  <p>Use control-plus or control-minus to zoom in or out.</p>
+  <select id='versionSelector'>
+   <option value='1'>Lone Swasti-klover Animated</option>
+   <option value='2'>Facism Version 1</option>
+   <option value='3'>Facism Version 2</option>
+  </select>
+  <br/>
+  <br/>
+  <canvas id='mainCanvas' width='1680' height='1040'></canvas>
+  <script type='text/javascript' src='../../library/tom/js/contrib/jquery/1.7/jquery_minified.js'></script>
+  <script type='text/javascript' src='../../library/tom/js/utils/utils.js'></script>
+  <script type='text/javascript' src='../../library/tom/js/utils/utilsObject.js'></script>
+  <script type='text/javascript' src='../../library/tom/js/utils/utilsValidator.js'></script>
+  <script type='text/javascript' src='../../library/tom/js/canvas/SketcherSwastiklover.js'></script>
+  <script type='text/javascript' src='../../library/tom/js/canvas/SketcherSwastikloverTiled.js'></script>
+  <script type='text/javascript'>
+$(document).ready
+(
+   function (ev)
+   {
+      try
+      {
+         $('#versionSelector').change(onChangeVersionSelector);
+         window.sketcher      = new SketcherSwastiklover($('#mainCanvas')[0].getContext('2d'));
+         window.sketcherTiled = new SketcherSwastikloverTiled($('#mainCanvas')[0]);
+         $('#versionSelector').change();
+      }
+      catch (e)
+      {
+         console.debug(e);
+      }
+   }
+);
+
+function onChangeVersionSelector(ev)
+{
+   try
+   {
+      clearCanvas();
+
+      var versionNumber = $('#versionSelector').val();
+
+      switch (versionNumber)
+      {
+       case '1':
+         window.sketcher.sketch
+         (
+            {
+               x                  : 512,
+               y                  : 512,
+               armSegmentLength   : 256,
+               armSegmentLengthMin: 3  ,
+               delayMs            : 500
+            }
+         );
+         break;
+
+       case '2':
+         window.sketcherTiled.sketch
+         (
+            {
+               armSegmentLength   : 128,
+               armSegmentLengthMin: 3 ,
+               tileSchemeNumber   : 1
+            }
+         );
+         break;
+
+       case '3':
+         window.sketcherTiled.sketch
+         (
+            {
+               armSegmentLength   : 128,
+               armSegmentLengthMin: 3 ,
+               tileSchemeNumber   : 2
+            }
+         );
+         break;
+
+       default:
+         throw 'Unknown version number "' + versionNumber + '".';
+      }
+   }
+   catch (e)
+   {
+      console.debug(e);
+   }
+}
+
+function clearCanvas()
+{
+   var ctx = $('#mainCanvas')[0].getContext('2d');
+
+   ctx.fillStyle = '#fff';
+   ctx.fillRect(0, 0, 1680, 1040);
+   ctx.fillStyle = '#000';
+}
+  </script>
+ </body>
+</html>

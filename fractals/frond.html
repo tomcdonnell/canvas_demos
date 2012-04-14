@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head><title>Javascript Fractal</title></head>
+ <body>
+  <h1>Javscript Fractal</h1>
+  <canvas id='mainCanvas' width='512' height='512' style='border: 1px solid red;'></canvas>
+  <script type='text/javascript'>
+var canvas = document.getElementById('mainCanvas');
+var ctx    = canvas.getContext('2d');
+
+ctx.fillStyle = '#000';
+
+drawFrondFractal(ctx, 256, 512, 128, true);
+
+function drawFrondFractal(ctx, x, y, lineLength, boolClockwise)
+{
+   if (lineLength < 1)
+   {
+      return;
+   }
+
+   drawFrond(x, y, lineLength, boolClockwise);
+
+   var halfLineLength = lineLength / 2;
+   var positions      =
+   (
+      (boolClockwise)?
+      [
+         [x             , y - lineLength    ],
+         [x + lineLength, y - lineLength * 2]
+      ]:
+      [
+         [x             , y - lineLength    ],
+         [x - lineLength, y - lineLength * 2]
+      ]
+   );
+
+   boolClockwise = !boolClockwise;
+
+   for (var i = 0; i < positions.length; ++i)
+   {
+      var pos = positions[i];
+
+      setTimeout
+      (
+         drawFrondFractal, 1500,
+         ctx, pos[0], pos[1], halfLineLength, boolClockwise
+      );
+   }
+}
+
+function drawFrond(x, y, lineLength, boolClockwise)
+{
+   var sign = (boolClockwise)? 1: -1;
+
+   ctx.beginPath();
+   ctx.moveTo(x                    , y                 );
+   ctx.lineTo(x                    , y -     lineLength);
+   ctx.lineTo(x + sign * lineLength, y - 2 * lineLength);
+   ctx.stroke();
+}
+  </script>
+ </body>
+</html>

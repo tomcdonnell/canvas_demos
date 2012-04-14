@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ <head><title>Simple Tree</title></head>
+ <body>
+  <h1>Simple Tree</h1>
+  <canvas id='mainCanvas' width='512' height='512' style='border: 1px solid red;'></canvas>
+  <script type='text/javascript'>
+var canvas = document.getElementById('mainCanvas');
+var ctx    = canvas.getContext('2d');
+
+ctx.fillStyle = '#000';
+
+drawFrondFractal(ctx, 256, 512, 128, 1000);
+
+function drawFrondFractal(ctx, x, y, lineLength, delayMs)
+{
+   if (lineLength < 4)
+   {
+      return;
+   }
+
+   drawFrond(x, y, lineLength);
+
+   var halfLineLength = lineLength / 2;
+   var positions      =
+   [
+      [x             , y - lineLength    ],
+      [x + lineLength, y - lineLength * 2],
+      [x - lineLength, y - lineLength * 2]
+   ];
+
+   for (var i = 0; i < positions.length; ++i)
+   {
+      var pos = positions[i];
+
+      setTimeout
+      (
+         drawFrondFractal, delayMs,
+         ctx, pos[0], pos[1], halfLineLength, delayMs
+      );
+   }
+}
+
+function drawFrond(x, y, lineLength)
+{
+   ctx.beginPath();
+   ctx.moveTo(x             , y                 );
+   ctx.lineTo(x             , y -     lineLength);
+   ctx.lineTo(x + lineLength, y - 2 * lineLength);
+   ctx.moveTo(x             , y -     lineLength);
+   ctx.lineTo(x - lineLength, y - 2 * lineLength);
+   ctx.stroke();
+}
+  </script>
+ </body>
+</html>
