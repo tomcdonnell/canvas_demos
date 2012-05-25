@@ -5,7 +5,7 @@
 /*
  *
  */
-function EarthGravitySimulator()
+function EarthMoonGravitySimulator()
 {
    // Privileged functions. /////////////////////////////////////////////////////////////////////
 
@@ -148,9 +148,9 @@ function EarthGravitySimulator()
 
    var _earth = new Particle
    (
-      new VectorRec2d(0, 0),
+      new VectorRec2d(0,                                        0),
       new VectorRec2d(0, -_MOON_INITIAL_TANGENTIAL_SPEED * 1 / 80),
-      _EARTH_MASS          ,
+      _EARTH_MASS                                                 ,
       _EARTH_RADIUS
    );
 
