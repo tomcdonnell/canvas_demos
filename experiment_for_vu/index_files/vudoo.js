@@ -92,17 +92,25 @@ function Vudoo(topLeftX, topLeftY, squareSideLength, nRows, nCols)
 
       _grid.init();
 
-      var lastCol = -1;
-      var lastRow = -1;
+      $(_canvas).mouseleave
+      (
+         function (ev)
+         {
+            lastCol = -1;
+            lastRow = -1;
+         }
+      );
+
+      $(_canvas).mouseleave();
 
       $(_canvas).mousemove
       (
-         function (e)
+         function (ev)
          {
             var offset  = $(this).offset();
             var squares = _grid.getSquares();
-            var col     = Math.floor((e.pageX - offset.left) / squareSideLength);
-            var row     = Math.floor((e.pageY - offset.top ) / squareSideLength);
+            var col     = Math.floor((ev.pageX - offset.left) / squareSideLength);
+            var row     = Math.floor((ev.pageY - offset.top ) / squareSideLength);
 
             if (col < 0 || col > nCols - 1 || row < 0 || row > nRows - 1)
             {
