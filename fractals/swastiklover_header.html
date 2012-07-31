@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+<html>
+ <head>
+  <title>Swasti-klover Fractal Art</title>
+ </head>
+ <body>
+  <canvas id='mainCanvas' width='900px' height='900px'></canvas>
+  <script type='text/javascript' src='../lib_tom/js/contrib/jquery/1.7/jquery_minified.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/utils/utils.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/utils/utilsObject.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/utils/utilsValidator.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastiklover.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastikloverTiled.js'></script>
+  <script type='text/javascript'>
+$(document).ready
+(
+   function (ev)
+   {
+      try
+      {
+         window.sketcher      = new SketcherSwastiklover($('#mainCanvas')[0].getContext('2d'));
+         window.sketcherTiled = new SketcherSwastikloverTiled($('#mainCanvas')[0]);
+
+         window.sketcherTiled.sketch
+         (
+            {
+               armSegmentLength   : 64,
+               armSegmentLengthMin: 3 ,
+               tileSchemeNumber   : 2
+            }
+         );
+      }
+      catch (e)
+      {
+         console.debug(e);
+      }
+   }
+);
+  </script>
+ </body>
+</html>
