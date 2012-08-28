@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
   <title>Swasti-klover Fractal Art</title>
  </head>
  <body>
@@ -15,12 +16,14 @@
   <br/>
   <br/>
   <canvas id='mainCanvas' width='1680' height='1040'></canvas>
+  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherGrid.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastiklover.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/canvas/Tessellator.js'></script>
+  <script type='text/javascript' src='../lib_tom/js/canvas/TessellatorSwastiklover.js'></script>
   <script type='text/javascript' src='../lib_tom/js/contrib/jquery/1.7/jquery_minified.js'></script>
   <script type='text/javascript' src='../lib_tom/js/utils/utils.js'></script>
   <script type='text/javascript' src='../lib_tom/js/utils/utilsObject.js'></script>
   <script type='text/javascript' src='../lib_tom/js/utils/utilsValidator.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastiklover.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastikloverTiled.js'></script>
   <script type='text/javascript'>
 $(document).ready
 (
@@ -28,14 +31,19 @@ $(document).ready
    {
       try
       {
+         var f = 'swastiklover.html onReady()';
+         UTILS.checkArgs(f, arguments, [Function]);
+
+         window.canvas                  = $('#mainCanvas')[0];
+         window.sketcherSwastiklover    = new SketcherSwastiklover(canvas.getContext('2d'));
+         window.tessellatorSwastiklover = new TessellatorSwastiklover(canvas);
+
          $('#versionSelector').change(onChangeVersionSelector);
-         window.sketcher      = new SketcherSwastiklover($('#mainCanvas')[0].getContext('2d'));
-         window.sketcherTiled = new SketcherSwastikloverTiled($('#mainCanvas')[0]);
          $('#versionSelector').change();
       }
       catch (e)
       {
-         console.debug(e);
+         UTILS.printExceptionToConsole(f, e);
       }
    }
 );
@@ -44,14 +52,25 @@ function onChangeVersionSelector(ev)
 {
    try
    {
+      var f = 'swastiklover.html onChangeVersionSelector()';
+      UTILS.checkArgs(f, arguments, [Object]);
+
       clearCanvas();
 
-      var versionNumber = $('#versionSelector').val();
+      var versionNumber      = $('#versionSelector').val();
+      var swastikloverConfig =
+      {
+         armSegmentLength   : 128,
+         armSegmentLengthMin: 3  ,
+         delayMs            : 0
+      };
+
+      window.tessellatorSwastiklover.reset();
 
       switch (versionNumber)
       {
        case '1':
-         window.sketcher.sketch
+         window.sketcherSwastiklover.sketch
          (
             {
                x                  : 512,
@@ -63,44 +82,27 @@ function onChangeVersionSelector(ev)
          );
          break;
 
-       case '2':
-         window.sketcherTiled.sketch
-         (
-            {
-               armSegmentLength   : 128,
-               armSegmentLengthMin: 3  ,
-               tileSchemeNumber   : 1
-            }
-         );
-         break;
+       case '2': window.tessellatorSwastiklover.sketch(swastikloverConfig, 1); break;
+       case '3': window.tessellatorSwastiklover.sketch(swastikloverConfig, 2); break;
 
-       case '3':
-         window.sketcherTiled.sketch
-         (
-            {
-               armSegmentLength   : 128,
-               armSegmentLengthMin: 3  ,
-               tileSchemeNumber   : 2
-            }
-         );
-         break;
-
-       default:
-         throw 'Unknown version number "' + versionNumber + '".';
+       default: throw 'Unknown version number "' + versionNumber + '".';
       }
    }
    catch (e)
    {
-      console.debug(e);
+      UTILS.printExceptionToConsole(f, e);
    }
 }
 
 function clearCanvas()
 {
-   var ctx = $('#mainCanvas')[0].getContext('2d');
+   var f = 'swastiklover.html onChangeVersionSelector()';
+   UTILS.checkArgs(f, arguments, []);
+
+   var ctx = window.canvas.getContext('2d');
 
    ctx.fillStyle = '#fff';
-   ctx.fillRect(0, 0, 1680, 1040);
+   ctx.fillRect(0, 0, $(canvas).width(), $(canvas).height());
    ctx.fillStyle = '#000';
 }
   </script>
