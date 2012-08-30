@@ -55,17 +55,16 @@ function onChangeVersionSelector(ev)
       var f = 'swastiklover.html onChangeVersionSelector()';
       UTILS.checkArgs(f, arguments, [Object]);
 
+      $('#versionSelector')[0].disabled = true;
       clearCanvas();
 
       var versionNumber      = $('#versionSelector').val();
       var swastikloverConfig =
       {
          armSegmentLength   : 128,
-         armSegmentLengthMin: 3  ,
-         delayMs            : 0
+         armSegmentLengthMin: 32  ,
+         delayMs            : 500
       };
-
-      window.tessellatorSwastiklover.reset();
 
       switch (versionNumber)
       {
@@ -77,13 +76,25 @@ function onChangeVersionSelector(ev)
                y                  : 512,
                armSegmentLength   : 256,
                armSegmentLengthMin: 3  ,
-               delayMs            : 500
+               delayMs            : 500,
+               onCompleteFunction : onCompleteRecursiveSketching
             }
          );
          break;
 
-       case '2': window.tessellatorSwastiklover.sketch(swastikloverConfig, 1); break;
-       case '3': window.tessellatorSwastiklover.sketch(swastikloverConfig, 2); break;
+       case '2':
+         window.tessellatorSwastiklover.sketch
+         (
+            swastikloverConfig, 1, onCompleteRecursiveSketching
+         );
+         break;
+
+       case '3':
+         window.tessellatorSwastiklover.sketch
+         (
+            swastikloverConfig, 2, onCompleteRecursiveSketching
+         );
+         break;
 
        default: throw 'Unknown version number "' + versionNumber + '".';
       }
@@ -104,6 +115,16 @@ function clearCanvas()
    ctx.fillStyle = '#fff';
    ctx.fillRect(0, 0, $(canvas).width(), $(canvas).height());
    ctx.fillStyle = '#000';
+}
+
+function onCompleteRecursiveSketching()
+{
+   var f = 'swastiklover.html onCompleteRecursiveSketching()';
+console.debug(f, 'e');
+   UTILS.checkArgs(f, arguments, []);
+
+   $('#versionSelector')[0].disabled = false;
+console.debug(f, 'x');
 }
   </script>
  </body>
