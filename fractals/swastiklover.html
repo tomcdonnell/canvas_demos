@@ -62,7 +62,7 @@ function onChangeVersionSelector(ev)
       var swastikloverConfig =
       {
          armSegmentLength   : 128,
-         armSegmentLengthMin: 32  ,
+         armSegmentLengthMin:   3,
          delayMs            : 500
       };
 
@@ -75,7 +75,7 @@ function onChangeVersionSelector(ev)
                x                  : 512,
                y                  : 512,
                armSegmentLength   : 256,
-               armSegmentLengthMin: 3  ,
+               armSegmentLengthMin:   3,
                delayMs            : 500,
                onCompleteFunction : onCompleteRecursiveSketching
             }
@@ -120,11 +120,10 @@ function clearCanvas()
 function onCompleteRecursiveSketching()
 {
    var f = 'swastiklover.html onCompleteRecursiveSketching()';
-console.debug(f, 'e');
+console.debug(f);
    UTILS.checkArgs(f, arguments, []);
 
    $('#versionSelector')[0].disabled = false;
-console.debug(f, 'x');
 }
   </script>
  </body>
