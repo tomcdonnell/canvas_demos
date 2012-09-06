@@ -32,7 +32,7 @@ $(document).ready
       try
       {
          var f = 'swastiklover.html onReady()';
-         UTILS.checkArgs(f, arguments, [Function]);
+         UTILS.checkArgs(f, arguments, ['function']);
 
          window.canvas                  = $('#mainCanvas')[0];
          window.sketcherSwastiklover    = new SketcherSwastiklover(canvas.getContext('2d'));
@@ -53,20 +53,15 @@ function onChangeVersionSelector(ev)
    try
    {
       var f = 'swastiklover.html onChangeVersionSelector()';
-      UTILS.checkArgs(f, arguments, [Object]);
+      UTILS.checkArgs(f, arguments, ['object']);
 
-      $('#versionSelector')[0].disabled = true;
+      var versionSelector = $('#versionSelector')[0];
+
+      //versionSelector.disabled = true;
+
       clearCanvas();
 
-      var versionNumber      = $('#versionSelector').val();
-      var swastikloverConfig =
-      {
-         armSegmentLength   : 128,
-         armSegmentLengthMin:   3,
-         delayMs            : 500
-      };
-
-      switch (versionNumber)
+      switch ($(versionSelector).val())
       {
        case '1':
          window.sketcherSwastiklover.sketch
@@ -85,18 +80,19 @@ function onChangeVersionSelector(ev)
        case '2':
          window.tessellatorSwastiklover.sketch
          (
-            swastikloverConfig, 1, onCompleteRecursiveSketching
+            {armSegmentLength: 128, armSegmentLengthMin: 3}, 1, onCompleteRecursiveSketching
          );
          break;
 
        case '3':
          window.tessellatorSwastiklover.sketch
          (
-            swastikloverConfig, 2, onCompleteRecursiveSketching
+            {armSegmentLength: 128, armSegmentLengthMin: 3}, 2, onCompleteRecursiveSketching
          );
          break;
 
-       default: throw 'Unknown version number "' + versionNumber + '".';
+       default:
+         throw new Exception(f, 'Unknown version number.', '');
       }
    }
    catch (e)
@@ -120,10 +116,11 @@ function clearCanvas()
 function onCompleteRecursiveSketching()
 {
    var f = 'swastiklover.html onCompleteRecursiveSketching()';
-console.debug(f);
+console.debug(f, 'e');
    UTILS.checkArgs(f, arguments, []);
 
    $('#versionSelector')[0].disabled = false;
+console.debug(f, 'f');
 }
   </script>
  </body>
