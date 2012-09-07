@@ -57,14 +57,14 @@ function onChangeVersionSelector(ev)
 
       var versionSelector = $('#versionSelector')[0];
 
-      //versionSelector.disabled = true;
+      versionSelector.disabled = true;
 
       clearCanvas();
 
       switch ($(versionSelector).val())
       {
        case '1':
-         window.sketcherSwastiklover.sketch
+         window.sketcherSwastiklover.sketchSwastiklover
          (
             {
                x                  : 512,
@@ -116,11 +116,9 @@ function clearCanvas()
 function onCompleteRecursiveSketching()
 {
    var f = 'swastiklover.html onCompleteRecursiveSketching()';
-console.debug(f, 'e');
    UTILS.checkArgs(f, arguments, []);
 
    $('#versionSelector')[0].disabled = false;
-console.debug(f, 'f');
 }
   </script>
  </body>
