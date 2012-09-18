@@ -1,0 +1,192 @@
+<?php
+/*
+ * vim: ts=3 sw=3 et wrap co=100 go-=b
+ */
+
+* /* Does the * wildcard work in CSS3?. TODO: Confirm. */
+{
+   border-width: 0;
+   margin: 0;
+   padding: 0;
+}
+
+h1, h2, h3, p, ul, li
+{
+   margin: 0;
+}
+
+body
+{
+   margin: 0;
+}
+
+body > div
+{
+   width: 1000px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+body > div > div
+{
+   margin-left: 70px;
+   margin-right: 70px;
+}
+
+canvas
+{
+   position: absolute;
+   z-index: -1;
+   top: 0;
+}
+
+div.overlay
+{
+   background-color: #eee;
+   border: 1px solid #000;
+   font-family: sans-serif;
+   margin-bottom: 14px;
+   padding: 15px;
+}
+
+h1
+{
+   margin-top: 7px;
+   margin-bottom: 7px;
+}
+
+#heading-div
+{
+   margin-top: 20px;
+}
+
+#heading-div > *.float-left
+{
+   float: left;
+}
+
+#heading-div > *.float-right
+{
+   float: right;
+}
+
+#heading-div img,
+#heading-div button
+{
+   height: 80px;
+   width: 80px;
+}
+
+#heading-div > img
+{
+   margin-right: 10px;
+}
+
+#profile-link-container-div
+{
+   width: 90px;
+}
+
+#profile-link-container-div *.profile-link-tl,
+#profile-link-container-div *.profile-link-tr,
+#profile-link-container-div *.profile-link-bl,
+#profile-link-container-div *.profile-link-br
+{
+   float: right;
+   background-color: #ccc;
+   color: transparent;
+   display: inline-block;
+   height: 30px;
+   margin: 0;
+   overflow: hidden;
+   vertical-align: middle;
+   width: 30px;
+}
+
+#profile-link-container-div *.profile-link-tl
+{
+   margin-bottom: 12px;
+   margin-right: 12px;
+}
+
+#profile-link-container-div *.profile-link-tr
+{
+   margin-bottom: 12px;
+}
+
+#profile-link-container-div *.profile-link-bl
+{
+   margin-right: 12px;
+}
+
+#github-log-div
+{
+   background-color: #000;
+   display: block;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   width: 100%;
+}
+
+#github-log-div > a
+{
+   color: #fff;
+   font-size: 11px;
+   font-family: courier, sans-serif;
+   padding-left: 5px;
+   text-decoration: none;
+}
+
+div.third-width-panel-div
+{
+   float: left;
+   height: 565px;
+   margin-right: 14px;
+   overflow: auto;
+   width: 245px;
+}
+
+#rightmost-third-width-panel-div
+{
+   margin-right: 0;
+}
+
+div.third-width-panel-div > h2
+{
+   margin-bottom: 5px;
+}
+
+div.third-width-panel-div > div.pick-of-the-day-div
+{
+   background-color: #fee;
+   border: 1px solid #dcc;
+   border-radius: 15px;
+   font-size: small;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 10px;
+   padding-right: 10px;
+   margin-bottom: 8px;
+}
+
+div.third-width-panel-div ul
+{
+   padding-left: 10px;
+}
+
+div.third-width-panel-div > ul
+{
+   margin-bottom: 10px;
+}
+
+div.third-width-panel-div a
+{
+   font-size: 12px;
+   color: #000;
+}
+
+div.third-width-panel-div li
+{
+   display: block;
+}
+?>
