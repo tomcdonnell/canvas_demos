@@ -36,14 +36,14 @@ class HomePageContentHtmlGenerator
             continue;
          }
 
-         $escapedIdAttributeString =
+         $escapedIdAttributeString = "class='overlay third-width-panel-div hideable-content'" .
          (
             (++$n == $nCategories)? " id='rightmost-third-width-panel-div'": ''
          );
 
          $potdInfo = self::_getPickOfTheDayFromInfoBySubcategory($infoByNameBySubcategory);
 
-         echo "$i<div class='overlay third-width-panel-div'$escapedIdAttributeString>\n";
+         echo "$i<div $escapedIdAttributeString>\n";
          echo "$i <h2>", htmlentities($category), "</h2>\n";
 
          if ($potdInfo !== null)

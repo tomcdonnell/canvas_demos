@@ -29,31 +29,39 @@ $data = array
    ),
    'profileLinkInfoByNameShort' => array
    (
+      'github' => array
+      (
+         'class' => 'profile-link-tr'                                       ,
+         'style' => 'background-image: url("images/logo_30x30_github.png");',
+         'title' => 'github.com profile'                                    ,
+         'url'   => 'http://github.com/tomcdonnell'
+      ),
       'stackoverflow' => array
       (
-         'class' => 'profile-link-tr'                                              ,
-         'style' => 'background-image: url("images/logo_30x30_stackoverflow.jpg");',
+         'class' => 'profile-link-tl'                                              ,
+         'style' => 'background-image: url("images/logo_30x30_stackoverflow.png");',
          'title' => 'stackoverflow.com profile'                                    ,
          'url'   => 'http://stackoverflow.com/users/336183/tom'
       ),
       'facebook' => array
       (
          'class' => 'profile-link-tl'                                         ,
-         'style' => 'background-image: url("images/logo_30x30_facebook.jpg");',
+         'style' => 'background-image: url("images/logo_30x30_facebook.png");',
          'title' => 'facebook.com profile'                                    ,
          'url'   => 'http://facebook.com/tomcdonnell'
       ),
       'hidecontent' => array
       (
          'class' => 'profile-link-br'                                             ,
-         'style' => 'background-image: url("images/logo_30x30_hide_content.jpg");',
+         'style' => 'background-image: url("images/logo_30x30_hide_content.png");',
          'title' => 'hide content to view animated background'                    ,
+         'id'    => 'show-hide-content-button'                                    ,
          'url'   => null
       ),
       'linkedin' => array
       (
          'class' => 'profile-link-bl'                                         ,
-         'style' => 'background-image: url("images/logo_30x30_linkedin.jpg");',
+         'style' => 'background-image: url("images/logo_30x30_linkedin.png");',
          'title' => 'linkedin.com profile'                                    ,
          'url'   => 'http://www.linkedin.com/profile/view?id=62173009'
       )
@@ -73,7 +81,7 @@ UtilsError::initErrorAndExceptionHandler('log.txt');
  </head>
  <body>
   <div>
-   <canvas id='mainCanvas' height='900pz' width='1000px'></canvas>
+   <canvas id='mainCanvas' height='900px' width='1000px'></canvas>
    <div>
     <div id='heading-div' class='overlay'>
      <img class='float-left' src='images/tom_beer_hat.jpg' alt='Tom with beer hat'/>
@@ -98,7 +106,8 @@ foreach ($data['profileLinkInfoByNameShort'] as $nameShort => $info)
             'class'  => $info['class'],
             'href'   => $info['url'  ],
             'style'  => $info['style'],
-            'title'  => $info['title']
+            'title'  => $info['title'],
+            'id'     => ((array_key_exists('id', $info))? $info['id']: null)
          )
       )
    );
@@ -107,7 +116,7 @@ foreach ($data['profileLinkInfoByNameShort'] as $nameShort => $info)
      </div>
      <div class='clear-floats'></div>
     </div>
-    <div class='overlay'>
+    <div class='overlay hideable-content'>
      <div id='github-log-div'>
 <?php
 UtilsHtml::echoHtmlForElement
@@ -137,7 +146,7 @@ HomePageContentHtmlGenerator::echoHtml('     ');
 ?>
      <div class='clear-floats'></div>
     </div>
-    <div class='overlay'>
+    <div class='overlay hideable-content'>
      Links
     </div>
    </div>

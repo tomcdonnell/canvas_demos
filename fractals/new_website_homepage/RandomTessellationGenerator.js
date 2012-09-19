@@ -40,13 +40,32 @@ function RandomTessellationGenerator(canvas)
    /*
     *
     */
-   function _onResize(ev)
+   function _onClickShowHideContentButton(ev)
    {
       try
       {
-         var f = 'RandomTessellationGenerator._onResize()';
-         UTILS.checkArgs(f, arguments, []);
+         var f = 'RandomTessellationGenerator._onClickShowHideContentButton()';
+         UTILS.checkArgs(f, arguments, ['object']);
 
+         var contentJq = $('*.hideable-content'       );
+         var buttonJq  = $('#show-hide-content-button');
+
+         switch (_contentIsHidden)
+         {
+          case false:
+            contentJq.slideUp();
+            buttonJq.attr('title', 'reveal content');
+            buttonJq.css('background-image', "url('images/logo_30x30_show_content.png')");
+            _contentIsHidden = true;
+            break;
+
+          case true:
+            contentJq.slideDown();
+            buttonJq.attr('title', 'hide content to view background');
+            buttonJq.css('background-image', "url('images/logo_30x30_hide_content.png')");
+            _contentIsHidden = false;
+            break;
+         }
       }
       catch (e)
       {
@@ -76,12 +95,15 @@ function RandomTessellationGenerator(canvas)
       var f = 'RandomTessellationGenerator._init()';
       UTILS.checkArgs(f, arguments, []);
 
+      $('#show-hide-content-button').click(_onClickShowHideContentButton);
+
       setInterval(_onIntervalTimeout, 10000);
       _onIntervalTimeout();
    }
 
    // Private variables. ////////////////////////////////////////////////////////////////////////
 
+   var _contentIsHidden         = false;
    var _tessellatorSwastiklover = new TessellatorSwastiklover(canvas);
    var _ctx                     = canvas.getContext('2d');
 
