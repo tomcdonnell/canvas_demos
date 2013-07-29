@@ -16,14 +16,14 @@
   <br/>
   <br/>
   <canvas id='mainCanvas' width='1680' height='1040' style='border: 1px solid red'></canvas>
-  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherGrid.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/canvas/SketcherSwastiklover.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/canvas/Tessellator.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/canvas/TessellatorSwastiklover.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/contrib/jquery/1.7/jquery_minified.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/utils/utils.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/utils/utilsObject.js'></script>
-  <script type='text/javascript' src='../lib_tom/js/utils/utilsValidator.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/canvas/SketcherGrid.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/canvas/SketcherSwastiklover.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/canvas/Tessellator.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/canvas/TessellatorSwastiklover.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/contrib/jquery/1.7/jquery_minified.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/utils/utils.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/utils/utilsObject.js'></script>
+  <script type='text/javascript' src='../../lib/tom/js/utils/utilsValidator.js'></script>
   <script type='text/javascript'>
 $(document).ready
 (
@@ -80,14 +80,14 @@ function onChangeVersionSelector(ev)
        case '2':
          window.tessellatorSwastiklover.sketch
          (
-            {armSegmentLength: 128, armSegmentLengthMin: 3}, 1, onCompleteRecursiveSketching
+            {armSegmentLength: 128, armSegmentLengthMin: 3}, 1, onCompleteRecursiveSketching, 0
          );
          break;
 
        case '3':
          window.tessellatorSwastiklover.sketch
          (
-            {armSegmentLength: 128, armSegmentLengthMin: 3}, 2, onCompleteRecursiveSketching
+            {armSegmentLength: 128, armSegmentLengthMin: 3}, 2, onCompleteRecursiveSketching, 0
          );
          break;
 
