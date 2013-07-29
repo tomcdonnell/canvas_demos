@@ -9,7 +9,7 @@ $(document).ready
         try
         {
             var f = 'document.onReady()';
-            UTILS.checkArgs(f, arguments, [Function]);
+            UTILS.checkArgs(f, arguments, ['function']);
 
             var mousetrails = new Mousetrails(100);
             $(document.body).append(mousetrails.getCanvas());

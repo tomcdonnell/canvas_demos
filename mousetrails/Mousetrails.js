@@ -8,7 +8,7 @@
 function Mousetrails(maxParticles)
 {
    var f = 'Mousetrails()';
-   UTILS.checkArgs(f, arguments, [Number]);
+   UTILS.checkArgs(f, arguments, ['number']);
 
    // Privileged functions. ////////////////////////////////////////////////////////////////////////
 

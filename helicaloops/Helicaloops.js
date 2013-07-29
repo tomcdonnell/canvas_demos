@@ -37,7 +37,7 @@ function Helicaloops()
    function _initHelix(helixNo)
    {
       var f = 'Hexicaloops._initHelix()';
-      UTILS.checkArgs(f, arguments, [Number]);
+      UTILS.checkArgs(f, arguments, ['number']);
 
       for (var y = 0; y < 1080; ++y)
       {
@@ -51,7 +51,7 @@ function Helicaloops()
    function _onTimeout()
    {
       var f = 'Hexicaloops._onTimeout()';
-      //UTILS.checkArgs(f, arguments, [Number]);
+      //UTILS.checkArgs(f, arguments, ['number']);
 
       for (var helixNo = 0; helixNo < _nHelixes; ++helixNo)
       {
@@ -81,7 +81,7 @@ function Helicaloops()
    function _drawHelix(helixNo, boolNotErase)
    {
       var f = 'Hexicaloops._drawHelix()';
-      //UTILS.checkArgs(f, arguments, [Number, Boolean]);
+      //UTILS.checkArgs(f, arguments, ['number', 'boolean']);
 
       var helixXbyY = _helixesXbyY[helixNo];
 
